@@ -20,6 +20,7 @@ import { ILibraryID } from "@/types";
 import UpdateLibraryModal from "./modals/UpdateBookModal";
 
 const BookTable = () => {
+
   const [books, setBooks] = useState<ILibraryID[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -28,7 +29,7 @@ const BookTable = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectBook, setSelectBook] = useState<ILibraryID | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>("");
-
+// get books function to get all books
   const getBooks = async () => {
     try {
       const res = await AuthAPi.get("/book/books");
@@ -39,40 +40,44 @@ const BookTable = () => {
       console.log(error);
     }
   };
+  // use effect to get books
   useEffect(() => {
     setBooks(books);
     getBooks();
   }, []);
-
+// open modal function
   const openModal = () => {
     setIsModalOpen(true);
   };
-
+// close modal function
   const closeModal = () => {
     setIsModalOpen(false);
   };
+  // handle change page function to handle page change
   const handleChangePage = (
     event: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number,
   ) => {
     setPage(newPage);
   };
-
+// handle change rows per page function to handle rows per page change
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+  // open edit modal function
   const openEditModal = (book: ILibraryID) => {
     setSelectBook(book);
     setIsEditModalOpen(true);
   };
-
+// close edit modal function
   const closeEditModal = () => {
     setIsEditModalOpen(false);
     setSelectBook(null);
   };
+  // handle delete function to delete a book
   const handleDelete = async (id: number) => {
     try {
       const res = await AuthAPi.delete(`/book/delete/${id}`);
@@ -83,6 +88,7 @@ const BookTable = () => {
       console.log(error);
     }
   };
+  // filter books function to filter books
   const filteredBooks = books.filter((book) =>
     book.name.toLowerCase().includes(searchQuery.toLowerCase()),
   );

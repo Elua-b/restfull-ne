@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon",
-    "start": "nodemon server.js",
+    "dev": "node api.js && nodemon",
+    "start": "node api.js && nodemon server.js",
     "swagger": "node app/swagger/swagger.js",
     "test": "jest --detectOpenHandles --coverage"
   },

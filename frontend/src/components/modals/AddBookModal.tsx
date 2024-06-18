@@ -7,7 +7,7 @@ import Loader from "../Loader";
 import { ILibrary } from "@/types";
 import { AuthAPi } from "@/api";
 
-
+// add user props
 interface AddUserModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -19,6 +19,7 @@ const AddBookModal: FC<AddUserModalProps> = ({
   onClose,
   getBooks,
 }) => {
+  // book state 
   const [book, setBook] = useState<ILibrary>({
     name: "",
     publisher: "",
@@ -28,7 +29,7 @@ const AddBookModal: FC<AddUserModalProps> = ({
   });
 
   const [loading, setLoading] = useState(false);
-
+// handle change function  to handle inputs
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setBook((prevBook) => ({
@@ -36,7 +37,7 @@ const AddBookModal: FC<AddUserModalProps> = ({
       [name]: value,
     }));
   };
- 
+ // handle submit function to submit the form
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
