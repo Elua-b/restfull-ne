@@ -12,9 +12,9 @@ export default function DashboardLayout() {
     return (
         <div className="w-full ">
             <Navbar />
-            <div className="mt-[8vh] flex">
+            <div className="mt-[8vh] flex w-full">
                 <Sidebar />
-                <div className="ml-[15vw]  w-full h-screen p-7 pt-4">
+                <div className="md:ml-[15vw] w-full md:w-[85%] h-screen pt-4">
                     <Outlet />
 
                 </div>

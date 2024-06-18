@@ -38,7 +38,7 @@ export default function Sidebar() {
       };
     
     return (
-        <div className="h-[92vh] bg-[#36393c] w-[15vw] shadow-md fixed p-4 flex flex-col justify-between">
+        <div className="h-[92vh] bg-[#36393c] hidden md:flex w-[15vw] shadow-md fixed p-4 flex-col justify-between">
             <div className="space-y-2">
                 {
                     links.map(link => (

@@ -1,5 +1,5 @@
 export interface ILoginData {
-  username: string;
+
   password: string;
   showPassword: boolean;
 }

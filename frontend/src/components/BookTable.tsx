@@ -88,7 +88,7 @@ const BookTable = () => {
   );
 
   return (
-    <div className="p-6 pt-10">
+    <div className="p-6 pt-10 w-full md:w-[85w]">
       <div className="flex w-full justify-between">
         <div>
           <h2 className="text-xl font-medium text-gray-700">Books</h2>
