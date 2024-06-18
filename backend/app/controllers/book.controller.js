@@ -11,7 +11,7 @@ const createBook = async (req, res) => {
     const { name, author, publisher, publicYear, subject } = req.body;
     const createdBy = req.user.id;
     console.log(createdBy);
-
+    // creating a user with the same id as the logged in user
     const user = await book.create({ ...req.body, createdBy });
 
     return res.status(201).send({ message: "OK", user });
@@ -23,6 +23,7 @@ const createBook = async (req, res) => {
 
 const getBooks = async (req, res) => {
   try {
+    // get all books created by the logged in user
     const Books = await book.findAll({
       where: { createdBy: req.user.id },
     });
@@ -35,6 +36,7 @@ const getBooks = async (req, res) => {
 
 const getBook = async (req, res) => {
   try {
+    // get a book created by the logged in user
     const Book = await book.findByPk(req.params.id);
     if (!Book)
       return res.status(404).send({ message: "Book not found" });
@@ -53,7 +55,7 @@ const updateBook = async (req, res) => {
 
     const { name, author, publisher, publicYear, subject } = req.body;
     const createdBy = req.user.id;
-  
+  // get a book created by the logged in user
     const Book = await book.findByPk(req.params.id);
     if (!Book)
       return res.status(404).send({ message: "Book not found" });
@@ -76,6 +78,7 @@ const updateBook = async (req, res) => {
 
 const deleteBook = async (req, res) => {
   try {
+    // get a book created by the logged in user
     const Book = await book.findByPk(req.params.id);
     if (!Book)
       return res.status(404).send({ message: "Book not found" });

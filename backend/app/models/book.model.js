@@ -44,6 +44,7 @@ const book = sequelize.define("book", {
     allowNull: false,
   },
 });
+// create table if not exists
 (async () => {
   try {
     await book.sync();
@@ -53,7 +54,7 @@ const book = sequelize.define("book", {
   }
 })();
 module.exports.book = book;
-
+// Validate book details
 const validateBook = (book) => {
   const schema = Joi.object({
     id: Joi.number(),

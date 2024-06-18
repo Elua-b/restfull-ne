@@ -45,7 +45,7 @@ const User = sequelize.define("user-table", {
   },
 });
 
-
+// create table if not exists
 (async () => {
   try {
     await User.sync();
@@ -54,14 +54,14 @@ const User = sequelize.define("user-table", {
     console.error("Error syncing User table:", err);
   }
 })();
-
+//generate a token for the user
 User.prototype.generateAuthToken = function () {
   const token = jwt.sign({ id: this.id }, process.env.JWT_SECRET);
   return token;
 };
 
 module.exports = User;
-
+// Validate user details
 module.exports.validateUser = (body, isUpdating = false) => {
   return Joi.object({
     
@@ -73,6 +73,7 @@ module.exports.validateUser = (body, isUpdating = false) => {
    
   }).validate(body);
 };
+// Validate user details for updating
 module.exports.validateUpdateUser = (body, isUpdating = false) => {
   return Joi.object({
    
@@ -82,6 +83,7 @@ module.exports.validateUpdateUser = (body, isUpdating = false) => {
     password: isUpdating ? Joi.string().min(6) : Joi.string().min(6).required(),
   }).validate(body);
 };
+// Validate user login details
 module.exports.validateUserLogin = (body) => {
   return Joi.object({
     email: Joi.string().email().required(),
@@ -90,4 +92,4 @@ module.exports.validateUserLogin = (body) => {
 };
 
 
-module.exports.PhoneRegex = /(?<!\d)\d{10}(?!\d)/;
+// module.exports.PhoneRegex = /(?<!\d)\d{10}(?!\d)/;
